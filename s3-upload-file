@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#      _____                   _                 _        __ _ _      
+#  ___|___ /       _   _ _ __ | | ___   __ _  __| |      / _(_) | ___ 
+# / __| |_ \ _____| | | | '_ \| |/ _ \ / _` |/ _` |_____| |_| | |/ _ \
+# \__ \___) |_____| |_| | |_) | | (_) | (_| | (_| |_____|  _| | |  __/
+# |___/____/       \__,_| .__/|_|\___/ \__,_|\__,_|     |_| |_|_|\___|
+# v0.2 - Andres Martinez|_|                                           
+#
+# Uploads a given file or folder to a given bucket in the running local-stack s3 instance.
+# If the file already exists it is replaced with no warning.
+# Make sure to have awslocal installed, it is needed for the aliases to work.
+#
+# $ ./s3-upload-file <local_path> <s3_path>
+#
+
+DIR="$(dirname "$(readlink -f "$0")")"
+LOCAL_PATH="$1"
+S3_PATH="$2"
+
+. "$DIR"/commons
+
+[ -n "$LOCAL_PATH" ] && [ -n "$S3_PATH" ] || log_throw 'Local path ($1) and s3 path ($2) must be defined'
+
+[ -d "$LOCAL_PATH" ] && MODIFIERS="--recursive"
+
+log_bold "Uploading $LOCAL_PATH to $S3_PATH"
+awslocal s3 cp "$LOCAL_PATH" s3://"$S3_PATH" $MODIFIERS || exit 1
+log_bold "Successfully uploaded $LOCAL_PATH to $S3_PATH"
+
+exit 0

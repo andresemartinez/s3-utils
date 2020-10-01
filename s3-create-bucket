@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#      _____                           _             _                _        _   
+#  ___|___ /        ___ _ __ ___  __ _| |_ ___      | |__  _   _  ___| | _____| |_ 
+# / __| |_ \ _____ / __| '__/ _ \/ _` | __/ _ \_____| '_ \| | | |/ __| |/ / _ \ __|
+# \__ \___) |_____| (__| | |  __/ (_| | ||  __/_____| |_) | |_| | (__|   <  __/ |_ 
+# |___/____/       \___|_|  \___|\__,_|\__\___|     |_.__/ \__,_|\___|_|\_\___|\__|
+# v0.1 - Andres Martinez
+#
+# Creates a bucket with a given name in the running local-stack s3 instance.
+# The bucket is assigned the pubic-read access policy to be able to access the files through http.
+# Make sure to have awslocal installed, it is needed for the aliases to work.
+#
+# $ ./s3-create-bucket <bucker_name>
+#
+
+DIR="$(dirname "$(readlink -f "$0")")"
+S3_BUCKET_NAME="$1"
+
+. "$DIR"/commons
+
+[ -n "$S3_BUCKET_NAME" ] || log_throw 'Bucket name ($1) must be defiend'
+
+log_bold "Creating bucket $S3_BUCKET_NAME"
+awslocal s3api create-bucket --bucket "$S3_BUCKET_NAME" --region us-east-1 > /dev/null || log_throw "An error occured while creating bucket $S3_BUCKET_NAME"
+awslocal s3api put-bucket-acl --bucket "$S3_BUCKET_NAME" --acl public-read > /dev/null || log_throw "An error occured while adding public-read acl to bucket $S3_BUCKET_NAME"
+log_bold "Successfully created bucket $S3_BUCKET_NAME"
+
+exit 0

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#      _____             _ _                     
+#  ___|___ /        __ _| (_) __ _ ___  ___  ___ 
+# / __| |_ \ _____ / _` | | |/ _` / __|/ _ \/ __|
+# \__ \___) |_____| (_| | | | (_| \__ \  __/\__ \
+# |___/____/       \__,_|_|_|\__,_|___/\___||___/
+# v0.1 - Andres Martinez
+#
+# Get awesome aliases for the s3-utils scripts printed to stdout ready to xclip them to your rc file of choice.
+# Make sure to have awslocal installed, it is needed for the aliases to work.
+#
+# $ ./s3-alises
+#
+
+DIR="$(dirname "$(readlink -f "$0")")"
+
+. "$DIR"/commons
+
+log ""
+log "# s3-utils aliases"
+log "alias s3it=\"$DIR/s3-init\""
+log "alias s3cb=\"$DIR/s3-create-bucket\""
+log "alias s3uf=\"$DIR/s3-upload-file\""
+log "alias s3rf=\"$DIR/s3-remove-file\""
+log "alias s3rb=\"$DIR/s3-remove-bucket\""
+log "alias s3ls=\"$DIR/s3-ls\""
+log ""

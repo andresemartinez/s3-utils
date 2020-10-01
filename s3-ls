@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#      _____       _     
+#  ___|___ /      | |___ 
+# / __| |_ \ _____| / __|
+# \__ \___) |_____| \__ \
+# |___/____/      |_|___/
+# v0.1 - Andres Martinez
+#
+# Displays the content of the given bucket from the running local-stack s3 instance in human readable form (how thoughtful).
+# Make sure to have awslocal installed, it is needed for the aliases to work.
+#
+# $ ./s3-ls <bucker_name>
+#
+
+DIR="$(dirname "$(readlink -f "$0")")"
+S3_PATH="$1"
+
+. "$DIR"/commons
+
+[ -n "$S3_PATH" ] || log_throw 'S3 path ($1) must be defiend'
+
+log_bold "Content of '$S3_PATH'"
+awslocal s3 ls s3://"$S3_PATH" --recursive --human-readable --summarize

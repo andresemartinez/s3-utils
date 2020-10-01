@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#   ___ ___  _ __ ___  _ __ ___   ___  _ __  ___ 
+#  / __/ _ \| '_ ` _ \| '_ ` _ \ / _ \| '_ \/ __|
+# | (_| (_) | | | | | | | | | | | (_) | | | \__ \
+#  \___\___/|_| |_| |_|_| |_| |_|\___/|_| |_|___/                                               
+# v0.1 - Andres Martinez
+#
+# Common functions and variables for the s3-utils scripts.
+#
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+log() {
+    echo "$1"
+}
+
+log_bold() {
+    echo "${bold}$1${normal}"
+}
+
+log_throw() {
+    log "$1"
+    exit 1
+}
+
+# Checking dependencies
+which awslocal > /dev/null || log_throw "awslocal is needed to run any s3-utils"
