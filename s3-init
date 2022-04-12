@@ -17,7 +17,7 @@ DIR="$(dirname "$(readlink -f "$0")")"
 BUCKET_NAME="$1"
 FILES_FOLDER="$2"
 
-. "$DIR"/commons
+. "$DIR/commons"
 
 [ -n "$BUCKET_NAME" ] && [ -n "$FILES_FOLDER" ] || log_throw 'Bucket name ($1) and files folder ($2) must be defiend'
 

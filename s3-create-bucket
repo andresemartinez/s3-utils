@@ -1,11 +1,10 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 #      _____                           _             _                _        _   
 #  ___|___ /        ___ _ __ ___  __ _| |_ ___      | |__  _   _  ___| | _____| |_ 
 # / __| |_ \ _____ / __| '__/ _ \/ _` | __/ _ \_____| '_ \| | | |/ __| |/ / _ \ __|
 # \__ \___) |_____| (__| | |  __/ (_| | ||  __/_____| |_) | |_| | (__|   <  __/ |_ 
 # |___/____/       \___|_|  \___|\__,_|\__\___|     |_.__/ \__,_|\___|_|\_\___|\__|
-# v0.1 - Andres Martinez
+# v0.2 - Andres Martinez
 #
 # Creates a bucket with a given name in the running local-stack s3 instance.
 # The bucket is assigned the pubic-read access policy to be able to access the files through http.
@@ -17,7 +16,7 @@
 DIR="$(dirname "$(readlink -f "$0")")"
 S3_BUCKET_NAME="$1"
 
-. "$DIR"/commons
+. "$DIR/commons"
 
 [ -n "$S3_BUCKET_NAME" ] || log_throw 'Bucket name ($1) must be defiend'
 

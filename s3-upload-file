@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 #      _____                   _                 _        __ _ _      
 #  ___|___ /       _   _ _ __ | | ___   __ _  __| |      / _(_) | ___ 
 # / __| |_ \ _____| | | | '_ \| |/ _ \ / _` |/ _` |_____| |_| | |/ _ \
@@ -18,7 +17,7 @@ DIR="$(dirname "$(readlink -f "$0")")"
 LOCAL_PATH="$1"
 S3_PATH="$2"
 
-. "$DIR"/commons
+. "$DIR/commons"
 
 [ -n "$LOCAL_PATH" ] && [ -n "$S3_PATH" ] || log_throw 'Local path ($1) and s3 path ($2) must be defined'
 

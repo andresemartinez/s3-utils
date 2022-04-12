@@ -1,11 +1,10 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 #      _____                                                __ _ _      
 #  ___|___ /       _ __ ___ _ __ ___   _____   _____       / _(_) | ___ 
 # / __| |_ \ _____| '__/ _ \ '_ ` _ \ / _ \ \ / / _ \_____| |_| | |/ _ \
 # \__ \___) |_____| | |  __/ | | | | | (_) \ V /  __/_____|  _| | |  __/
 # |___/____/      |_|  \___|_| |_| |_|\___/ \_/ \___|     |_| |_|_|\___|
-# v0.1 - Andres Martinez
+# v0.2 - Andres Martinez
 #
 # Removes a given file from the running local-stack s3 instance with no previous confirmation.
 # Make sure to have awslocal installed, it is needed for the aliases to work.
@@ -16,7 +15,7 @@
 DIR="$(dirname "$(readlink -f "$0")")"
 S3_PATH="$1"
 
-. "$DIR"/commons
+. "$DIR/commons"
 
 [ -n "$S3_PATH" ] || log_throw 'S3 path ($1) must be defined'
 

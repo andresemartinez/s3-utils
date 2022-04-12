@@ -1,11 +1,10 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 #      _____       _     
 #  ___|___ /      | |___ 
 # / __| |_ \ _____| / __|
 # \__ \___) |_____| \__ \
 # |___/____/      |_|___/
-# v0.1 - Andres Martinez
+# v0.2 - Andres Martinez
 #
 # Displays the content of the given bucket from the running local-stack s3 instance in human readable form (how thoughtful).
 # Make sure to have awslocal installed, it is needed for the aliases to work.
@@ -16,7 +15,7 @@
 DIR="$(dirname "$(readlink -f "$0")")"
 S3_PATH="$1"
 
-. "$DIR"/commons
+. "$DIR/commons"
 
 [ -n "$S3_PATH" ] || log_throw 'S3 path ($1) must be defiend'
 
