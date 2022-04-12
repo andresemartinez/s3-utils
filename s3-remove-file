@@ -12,7 +12,7 @@
 # $ ./s3-remove-file <file_path>
 #
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$0")"
 S3_PATH="$1"
 
 . "$DIR/commons"

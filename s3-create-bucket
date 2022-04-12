@@ -13,7 +13,7 @@
 # $ ./s3-create-bucket <bucker_name>
 #
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$0")"
 S3_BUCKET_NAME="$1"
 
 . "$DIR/commons"

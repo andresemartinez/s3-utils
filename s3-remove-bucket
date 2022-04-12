@@ -14,7 +14,7 @@
 # $ ./s3-remove-bucket <bucket_name>
 #
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$0")"
 S3_BUCKET="$1"
 
 . "$DIR/commons"

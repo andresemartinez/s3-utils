@@ -12,7 +12,7 @@
 # $ ./s3-alises
 #
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$0")"
 
 . "$DIR/commons"
 

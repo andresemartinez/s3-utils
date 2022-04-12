@@ -13,7 +13,7 @@
 # $ ./s3-init <bucker_name> <init_folder>
 #
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$0")"
 BUCKET_NAME="$1"
 FILES_FOLDER="$2"
 
